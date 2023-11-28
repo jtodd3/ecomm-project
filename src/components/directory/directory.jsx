@@ -1,5 +1,5 @@
 import CategoryItem from "../category-item/category-item";
-import './directory.styles.scss';
+import "./directory.styles.scss";
 
 export default function Directory({ categories }) {
   return (
@@ -8,5 +8,5 @@ export default function Directory({ categories }) {
         <CategoryItem key={category.id} category={category} />
       ))}
     </div>
-  )
+  );
 }
