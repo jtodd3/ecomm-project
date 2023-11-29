@@ -1,6 +1,15 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import { initializeApp } from "firebase/app";
+import {
+  getAuth,
+  signInWithRedirect,
+  signInWithPopup,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+} from "firebase/auth";
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -9,7 +18,7 @@ const firebaseConfig = {
   projectId: "crwn-clothing-db-f7b23",
   storageBucket: "crwn-clothing-db-f7b23.appspot.com",
   messagingSenderId: "16041973143",
-  appId: "1:16041973143:web:be4cc2960d777309be20d2"
+  appId: "1:16041973143:web:be4cc2960d777309be20d2",
 };
 
 // Initialize Firebase
@@ -21,19 +30,24 @@ googleProvider.setCustomParameters({
 });
 
 export const auth = getAuth();
-export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
-export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
+export const signInWithGooglePopup = () =>
+  signInWithPopup(auth, googleProvider);
+export const signInWithGoogleRedirect = () =>
+  signInWithRedirect(auth, googleProvider);
 
 export const db = getFirestore();
 
-export const createUserDocumentFromAuth = async (userAuth, additonalInfo = {}) => {
+export const createUserDocumentFromAuth = async (
+  userAuth,
+  additonalInfo = {}
+) => {
   if (!userAuth) {
     return;
   }
 
-  const userDocRef = doc(db, 'users', userAuth.uid);
+  const userDocRef = doc(db, "users", userAuth.uid);
   const userSnapshot = await getDoc(userDocRef);
-  
+
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
@@ -46,10 +60,10 @@ export const createUserDocumentFromAuth = async (userAuth, additonalInfo = {}) =
         ...additonalInfo,
       });
     } catch (error) {
-      console.log('error creating the user', error.message);
+      console.log("error creating the user", error.message);
     }
   }
-}
+};
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) {
@@ -57,7 +71,7 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
   }
 
   return await createUserWithEmailAndPassword(auth, email, password);
-}
+};
 
 export const signInAuthWithEmailAndPassword = async (email, password) => {
   if (!email || !password) {
@@ -65,7 +79,9 @@ export const signInAuthWithEmailAndPassword = async (email, password) => {
   }
 
   return await signInWithEmailAndPassword(auth, email, password);
-}
+};
 
 export const signOutUser = () => signOut(auth);
 
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);

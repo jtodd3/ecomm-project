@@ -12,7 +12,6 @@ export default function Navigation() {
 
   const handleOnSignOut = async () => {
     await signOutUser();
-    currentUser(null);
   };
 
   return (
