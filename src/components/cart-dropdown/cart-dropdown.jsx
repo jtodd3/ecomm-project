@@ -26,7 +26,7 @@ export default function CartDropdown() {
           ))}
         </CartItems>
       ) : (
-        <EmptyMessage>No items in your cart</EmptyMessage>
+        <EmptyMessage>Your cart is empty</EmptyMessage>
       )}
       <Button onClick={handleGoToCheckout}>GO TO CHECKOUT</Button>
     </CartDropdownContainer>
