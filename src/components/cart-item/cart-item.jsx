@@ -9,7 +9,7 @@ export default function CartItem({
       <div className="item-details">
         <span className="name">{name}</span>
         <span>
-          {quantity} x {price}
+          {quantity} x ${price}
         </span>
       </div>
     </div>
