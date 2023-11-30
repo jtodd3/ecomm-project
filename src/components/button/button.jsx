@@ -1,4 +1,4 @@
-import "./button.styles.scss";
+import { ButtonContainer } from "./button.styles.jsx";
 
 const BUTTON_TYPE_CLASSES = {
   google: "google-sign-in",
@@ -7,11 +7,11 @@ const BUTTON_TYPE_CLASSES = {
 
 export default function Button({ children, buttonType, ...otherProps }) {
   return (
-    <button
-      className={`button-container ${BUTTON_TYPE_CLASSES[buttonType]}`}
+    <ButtonContainer
+      className={`${BUTTON_TYPE_CLASSES[buttonType]}`}
       {...otherProps}
     >
       {children}
-    </button>
+    </ButtonContainer>
   );
 }
