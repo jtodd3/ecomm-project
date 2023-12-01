@@ -86,7 +86,7 @@ export default function SignUpForm() {
           type="text"
           required
           onChange={handleChange}
-          name="password"
+          name="confirmPassword"
         />
 
         <Button type="submit">Sign Up</Button>
