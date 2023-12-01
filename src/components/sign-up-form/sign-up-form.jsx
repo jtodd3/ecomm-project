@@ -83,7 +83,7 @@ export default function SignUpForm() {
         <FormInput
           label="Confirm Password"
           value={confirmPassword}
-          type="text"
+          type="password"
           required
           onChange={handleChange}
           name="confirmPassword"
