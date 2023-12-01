@@ -3,7 +3,7 @@ import { useState } from "react";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
-} from "../../utils/firebase";
+} from "../../utils/firebase/firebase.js";
 import FormInput from "../form-input/form-input";
 import Button from "../button/button";
 
