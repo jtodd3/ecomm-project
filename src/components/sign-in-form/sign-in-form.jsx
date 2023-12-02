@@ -25,14 +25,14 @@ export default function SignInForm() {
   };
 
   const signInWithGoogle = () => {
-    dispatch(googleSignInStart);
+    dispatch(googleSignInStart());
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      dispatch(emailSignInStart({ email, password }));
+      dispatch(emailSignInStart(email, password));
       resetFormFields();
     } catch (error) {
       console.log("user sign in failed", error);
