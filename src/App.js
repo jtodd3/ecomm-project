@@ -3,29 +3,18 @@ import { useDispatch } from "react-redux";
 
 import { Routes, Route } from "react-router-dom";
 
-import { setCurrentUser } from "./store/user/user.action";
+import { checkUserSession, setCurrentUser } from "./store/user/user.action";
 
 import Home from "./routes/home/home";
 import Navigation from "./routes/navigation/navigation";
 import Authentication from "./routes/authentication/authentication";
 import Shop from "./routes/shop/shop";
 import Checkout from "./routes/checkout/checkout";
-import {
-  onAuthStateChangedListener,
-  createUserDocumentFromAuth,
-} from "./utils/firebase/firebase";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) => {
-      if (user) {
-        createUserDocumentFromAuth(user);
-      }
-      dispatch(setCurrentUser(user));
-    });
-
-    return unsubscribe;
+    dispatch(checkUserSession());
   }, []);
 
   return (
