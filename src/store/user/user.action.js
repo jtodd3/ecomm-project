@@ -1,5 +1,5 @@
-import { createAction } from "../../utils/reducer/reducer";
 import { USER_ACTION_TYPES } from "./user.types";
+import { createAction } from "../../utils/reducer/reducer";
 
 export const setCurrentUser = (user) =>
   createAction(USER_ACTION_TYPES.SET_CURRENT_USER, user);
@@ -17,7 +17,7 @@ export const signInSuccess = (user) =>
   createAction(USER_ACTION_TYPES.SIGN_IN_SUCCESS, user);
 
 export const signInFailed = (error) =>
-  createAction(USER_ACTION_TYPES.SIGN_IN_FAILURE, error);
+  createAction(USER_ACTION_TYPES.SIGN_IN_FAILED, error);
 
 export const signUpStart = (email, password, displayName) =>
   createAction(USER_ACTION_TYPES.SIGN_UP_START, {
