@@ -33,6 +33,6 @@ export const fetchCategoriesSuccess = withMatcher(
 );
 
 export const fetchCategoriesFailed = withMatcher(
-  (error: FetchCategoriesFailed) =>
+  (error: Error): FetchCategoriesFailed =>
     createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error)
 );
