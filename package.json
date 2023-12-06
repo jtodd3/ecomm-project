@@ -11,6 +11,7 @@
     "@types/react": "^18.2.42",
     "@types/react-dom": "^18.2.17",
     "@types/redux-logger": "^3.0.12",
+    "@types/styled-components": "^5.1.32",
     "firebase": "^10.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
