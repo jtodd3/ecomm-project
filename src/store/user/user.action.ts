@@ -1,17 +1,19 @@
-import { USER_ACTION_TYPES } from "./user.types";
+import { User } from 'firebase/auth';
+
+import { USER_ACTION_TYPES } from './user.types';
+
 import {
   createAction,
   withMatcher,
   Action,
   ActionWithPayload,
-} from "../../utils/reducer/reducer.utils";
+} from '../../utils/reducer/reducer.utils';
 import {
-  AdditionalInformation,
   UserData,
-} from "../../utils/firebase/firebase.utils";
-import { User } from "firebase/auth";
+  AdditionalInformation,
+} from '../../utils/firebase/firebase.utils';
 
-export type CheckUserSesion = Action<USER_ACTION_TYPES.CHECK_USER_SESSION>;
+export type CheckUserSession = Action<USER_ACTION_TYPES.CHECK_USER_SESSION>;
 
 export type SetCurrentUser = ActionWithPayload<
   USER_ACTION_TYPES.SET_CURRENT_USER,
@@ -19,6 +21,11 @@ export type SetCurrentUser = ActionWithPayload<
 >;
 
 export type GoogleSignInStart = Action<USER_ACTION_TYPES.GOOGLE_SIGN_IN_START>;
+
+export type SignUpStart = ActionWithPayload<
+  USER_ACTION_TYPES.SIGN_UP_START,
+  { email: string; password: string; displayName: string }
+>;
 
 export type EmailSignInStart = ActionWithPayload<
   USER_ACTION_TYPES.EMAIL_SIGN_IN_START,
@@ -35,6 +42,11 @@ export type SignInFailed = ActionWithPayload<
   Error
 >;
 
+export type SignUpSuccess = ActionWithPayload<
+  USER_ACTION_TYPES.SIGN_UP_SUCCESS,
+  { user: User; additionalDetails: AdditionalInformation }
+>;
+
 export type SignUpFailed = ActionWithPayload<
   USER_ACTION_TYPES.SIGN_UP_FAILED,
   Error
@@ -49,22 +61,13 @@ export type SignOutFailed = ActionWithPayload<
   Error
 >;
 
-export type SignUpStart = ActionWithPayload<
-  USER_ACTION_TYPES.SIGN_UP_START,
-  { email: string; password: string; displayName: string }
->;
+export const checkUserSession = withMatcher(
+  (): CheckUserSession => createAction(USER_ACTION_TYPES.CHECK_USER_SESSION)
+);
 
-export type SignUpSuccess = ActionWithPayload<
-  USER_ACTION_TYPES.SIGN_UP_SUCCESS,
-  { user: User; additionalDetails: AdditionalInformation }
->;
 export const setCurrentUser = withMatcher(
   (user: UserData): SetCurrentUser =>
     createAction(USER_ACTION_TYPES.SET_CURRENT_USER, user)
-);
-
-export const checkUserSession = withMatcher(
-  (): CheckUserSesion => createAction(USER_ACTION_TYPES.CHECK_USER_SESSION)
 );
 
 export const googleSignInStart = withMatcher(
